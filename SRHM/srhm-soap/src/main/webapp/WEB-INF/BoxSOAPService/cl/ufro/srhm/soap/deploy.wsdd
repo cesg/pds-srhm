@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BoxSOAPService WSDL service -->
+
+  <service name="BoxSOAP" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.srhm.ufro.cl"/>
+      <parameter name="wsdlServiceElement" value="BoxSOAPService"/>
+      <parameter name="schemaQualified" value="http://soap.srhm.ufro.cl"/>
+      <parameter name="wsdlServicePort" value="BoxSOAP"/>
+      <parameter name="className" value="cl.ufro.srhm.soap.BoxSOAP"/>
+      <parameter name="wsdlPortType" value="BoxSOAP"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://soap.srhm.ufro.cl" xmlns:retNS="http://soap.srhm.ufro.cl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="obtenerOcupacionBox" qname="operNS:obtenerOcupacionBox" returnQName="retNS:obtenerOcupacionBoxReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://soap.srhm.ufro.cl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:boxId" type="tns:int"/>
+        <parameter xmlns:pns="http://soap.srhm.ufro.cl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fecha1" type="tns:dateTime"/>
+        <parameter xmlns:pns="http://soap.srhm.ufro.cl" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fecha2" type="tns:dateTime"/>
+      </operation>
+      <operation xmlns:operNS="http://soap.srhm.ufro.cl" xmlns:retNS="http://soap.srhm.ufro.cl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="obtenerBoxes" qname="operNS:obtenerBoxes" returnQName="retNS:obtenerBoxesReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="obtenerOcupacionBox obtenerBoxes"/>
+
+  </service>
+</deployment>

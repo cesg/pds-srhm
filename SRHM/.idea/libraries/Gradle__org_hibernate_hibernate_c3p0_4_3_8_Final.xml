@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: org.hibernate:hibernate-c3p0:4.3.8.Final">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-c3p0/4.3.8.Final/hibernate-c3p0-4.3.8.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

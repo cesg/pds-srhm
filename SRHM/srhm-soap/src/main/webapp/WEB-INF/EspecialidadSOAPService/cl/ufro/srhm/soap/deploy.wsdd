@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EspecialidadSOAPService WSDL service -->
+
+  <service name="EspecialidadSOAP" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.srhm.ufro.cl"/>
+      <parameter name="wsdlServiceElement" value="EspecialidadSOAPService"/>
+      <parameter name="schemaQualified" value="http://soap.srhm.ufro.cl"/>
+      <parameter name="wsdlServicePort" value="EspecialidadSOAP"/>
+      <parameter name="className" value="cl.ufro.srhm.soap.EspecialidadSOAP"/>
+      <parameter name="wsdlPortType" value="EspecialidadSOAP"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://soap.srhm.ufro.cl" xmlns:retNS="http://soap.srhm.ufro.cl" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="obtenerEspecialidades" qname="operNS:obtenerEspecialidades" returnQName="retNS:obtenerEspecialidadesReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="obtenerEspecialidades"/>
+
+  </service>
+</deployment>

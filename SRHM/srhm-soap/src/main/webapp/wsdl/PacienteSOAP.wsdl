@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://soap.srhm.ufro.cl" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://soap.srhm.ufro.cl" xmlns:intf="http://soap.srhm.ufro.cl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://soap.srhm.ufro.cl" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="obtenerPacientesMasReservas">
+    <complexType>
+     <sequence>
+      <element name="fecha1" type="xsd:dateTime"/>
+      <element name="fecha2" type="xsd:dateTime"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPacientesMasReservasResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerPacientesMasReservasReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPacientes">
+    <complexType/>
+   </element>
+   <element name="obtenerPacientesResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerPacientesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="obtenerPacientesRequest">
+
+      <wsdl:part element="impl:obtenerPacientes" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPacientesMasReservasRequest">
+
+      <wsdl:part element="impl:obtenerPacientesMasReservas" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPacientesResponse">
+
+      <wsdl:part element="impl:obtenerPacientesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPacientesMasReservasResponse">
+
+      <wsdl:part element="impl:obtenerPacientesMasReservasResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PacienteSOAP">
+
+      <wsdl:operation name="obtenerPacientesMasReservas">
+
+         <wsdl:input message="impl:obtenerPacientesMasReservasRequest" name="obtenerPacientesMasReservasRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerPacientesMasReservasResponse" name="obtenerPacientesMasReservasResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPacientes">
+
+         <wsdl:input message="impl:obtenerPacientesRequest" name="obtenerPacientesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerPacientesResponse" name="obtenerPacientesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PacienteSOAPSoapBinding" type="impl:PacienteSOAP">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="obtenerPacientesMasReservas">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerPacientesMasReservasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerPacientesMasReservasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPacientes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerPacientesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerPacientesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PacienteSOAPService">
+
+      <wsdl:port binding="impl:PacienteSOAPSoapBinding" name="PacienteSOAP">
+
+         <wsdlsoap:address location="http://localhost:8080/srhm-soap/services/PacienteSOAP"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL-local - srhm@localhost" uuid="88588714-e0b0-4dc3-852e-2bba21fa29e9">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>srhm.*</schema-pattern>
+      <default-schemas>srhm.*</default-schemas>
+    </data-source>
+  </component>
+</project>

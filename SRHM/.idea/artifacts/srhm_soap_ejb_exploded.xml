@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="srhm-soap:ejb exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/srhm_soap_ejb_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="srhm-soap/ejb/EJB" />
+      <element id="javaee-facet-classes" facet="srhm-soap/ejb/EJB" />
+    </root>
+  </artifact>
+</component>

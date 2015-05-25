@@ -1,0 +1,39 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from HoraApsSOAPService WSDL service -->
+
+  <service name="HoraApsSOAP" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.srhm.ufro.cl"/>
+      <parameter name="wsdlServiceElement" value="HoraApsSOAPService"/>
+      <parameter name="schemaQualified" value="http://soap.srhm.ufro.cl"/>
+      <parameter name="wsdlServicePort" value="HoraApsSOAP"/>
+      <parameter name="className" value="cl.ufro.srhm.soap.HoraApsSOAPSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="HoraApsSOAP"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="buscarHoraAPS" qname="operNS:buscarHoraAPS" xmlns:operNS="http://soap.srhm.ufro.cl" returnQName="retNS:buscarHoraAPSReturn" xmlns:retNS="http://soap.srhm.ufro.cl" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:medicoId" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fecha1" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fecha2" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="reservarHoraAps" qname="operNS:reservarHoraAps" xmlns:operNS="http://soap.srhm.ufro.cl" returnQName="retNS:reservarHoraApsReturn" xmlns:retNS="http://soap.srhm.ufro.cl" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:horaMedicaId" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pacienteId" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="reservarHoraMedicaControl" qname="operNS:reservarHoraMedicaControl" xmlns:operNS="http://soap.srhm.ufro.cl" returnQName="retNS:reservarHoraMedicaControlReturn" xmlns:retNS="http://soap.srhm.ufro.cl" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:horasMedicasIds" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pacienteId" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="buscarHoraAPS reservarHoraMedicaControl reservarHoraAps"/>
+
+  </service>
+</deployment>

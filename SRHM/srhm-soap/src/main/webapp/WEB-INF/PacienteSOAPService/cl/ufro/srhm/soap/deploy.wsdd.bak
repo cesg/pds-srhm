@@ -1,0 +1,32 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from PacienteSOAPService WSDL service -->
+
+  <service name="PacienteSOAP" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.srhm.ufro.cl"/>
+      <parameter name="wsdlServiceElement" value="PacienteSOAPService"/>
+      <parameter name="schemaQualified" value="http://soap.srhm.ufro.cl"/>
+      <parameter name="wsdlServicePort" value="PacienteSOAP"/>
+      <parameter name="className" value="cl.ufro.srhm.soap.PacienteSOAPSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="PacienteSOAP"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="obtenerPacientesMasReservas" qname="operNS:obtenerPacientesMasReservas" xmlns:operNS="http://soap.srhm.ufro.cl" returnQName="retNS:obtenerPacientesMasReservasReturn" xmlns:retNS="http://soap.srhm.ufro.cl" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:fecha1" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fecha2" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="obtenerPacientes" qname="operNS:obtenerPacientes" xmlns:operNS="http://soap.srhm.ufro.cl" returnQName="retNS:obtenerPacientesReturn" xmlns:retNS="http://soap.srhm.ufro.cl" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="obtenerPacientesMasReservas obtenerPacientes"/>
+
+  </service>
+</deployment>

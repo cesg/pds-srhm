@@ -1,0 +1,46 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MedicosSOAPService WSDL service -->
+
+  <service name="MedicosSOAP" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soap.srhm.ufro.cl"/>
+      <parameter name="wsdlServiceElement" value="MedicosSOAPService"/>
+      <parameter name="schemaQualified" value="http://soap.srhm.ufro.cl"/>
+      <parameter name="wsdlServicePort" value="MedicosSOAP"/>
+      <parameter name="className" value="cl.ufro.srhm.soap.MedicosSOAPSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="MedicosSOAP"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="obtenerMedico" qname="operNS:obtenerMedico" xmlns:operNS="http://soap.srhm.ufro.cl" returnQName="retNS:obtenerMedicoReturn" xmlns:retNS="http://soap.srhm.ufro.cl" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="obtenerOcupacionMedico" qname="operNS:obtenerOcupacionMedico" xmlns:operNS="http://soap.srhm.ufro.cl" returnQName="retNS:obtenerOcupacionMedicoReturn" xmlns:retNS="http://soap.srhm.ufro.cl" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:medicoId" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fecha1" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fecha2" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="obtenerMedicoMasSolicitado" qname="operNS:obtenerMedicoMasSolicitado" xmlns:operNS="http://soap.srhm.ufro.cl" returnQName="retNS:obtenerMedicoMasSolicitadoReturn" xmlns:retNS="http://soap.srhm.ufro.cl" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:fecha1" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fecha2" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="buscarSuDisponibilidad" qname="operNS:buscarSuDisponibilidad" xmlns:operNS="http://soap.srhm.ufro.cl" returnQName="retNS:buscarSuDisponibilidadReturn" xmlns:retNS="http://soap.srhm.ufro.cl" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:medicoId" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fecha1" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fecha2" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:dateTime" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="obtenerMedicosDeEspecialidad" qname="operNS:obtenerMedicosDeEspecialidad" xmlns:operNS="http://soap.srhm.ufro.cl" returnQName="retNS:obtenerMedicosDeEspecialidadReturn" xmlns:retNS="http://soap.srhm.ufro.cl" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:especialidadId" xmlns:pns="http://soap.srhm.ufro.cl" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="obtenerOcupacionMedico obtenerMedico obtenerMedicosDeEspecialidad obtenerMedicoMasSolicitado buscarSuDisponibilidad"/>
+
+  </service>
+</deployment>

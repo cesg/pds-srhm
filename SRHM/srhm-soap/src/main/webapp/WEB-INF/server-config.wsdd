@@ -1,0 +1,147 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="/home/cristian/workspace45/pds/prueba1/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/srhm-soap/WEB-INF//attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="BoxSOAP" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="obtenerOcupacionBox" qname="ns1:obtenerOcupacionBox" returnQName="ns1:obtenerOcupacionBoxReturn" returnType="xsd:int" soapAction="" xmlns:ns1="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:boxId" type="xsd:int"/>
+   <ns2:parameter qname="ns1:fecha1" type="xsd:dateTime"/>
+   <ns2:parameter qname="ns1:fecha2" type="xsd:dateTime"/>
+  </ns2:operation>
+  <ns1:operation name="obtenerBoxes" qname="ns2:obtenerBoxes" returnQName="ns2:obtenerBoxesReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="obtenerOcupacionBox obtenerBoxes"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="BoxSOAP"/>
+  <ns1:parameter name="className" value="cl.ufro.srhm.soap.BoxSOAP"/>
+  <ns1:parameter name="wsdlServicePort" value="BoxSOAP"/>
+  <ns1:parameter name="schemaQualified" value="http://soap.srhm.ufro.cl"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://soap.srhm.ufro.cl"/>
+  <ns1:parameter name="wsdlServiceElement" value="BoxSOAPService"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="EspecialidadSOAP" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="obtenerEspecialidades" qname="ns3:obtenerEspecialidades" returnQName="ns3:obtenerEspecialidadesReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="obtenerEspecialidades"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="EspecialidadSOAP"/>
+  <ns1:parameter name="className" value="cl.ufro.srhm.soap.EspecialidadSOAP"/>
+  <ns1:parameter name="wsdlServicePort" value="EspecialidadSOAP"/>
+  <ns1:parameter name="schemaQualified" value="http://soap.srhm.ufro.cl"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://soap.srhm.ufro.cl"/>
+  <ns1:parameter name="wsdlServiceElement" value="EspecialidadSOAPService"/>
+ </ns1:service>
+ <ns1:service name="HoraApsSOAP" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="buscarHoraAPS" qname="ns4:buscarHoraAPS" returnQName="ns4:buscarHoraAPSReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:medicoId" type="xsd:int"/>
+   <ns1:parameter qname="ns4:fecha1" type="xsd:dateTime"/>
+   <ns1:parameter qname="ns4:fecha2" type="xsd:dateTime"/>
+  </ns1:operation>
+  <ns1:operation name="reservarHoraAps" qname="ns5:reservarHoraAps" returnQName="ns5:reservarHoraApsReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:horaMedicaId" type="xsd:int"/>
+   <ns1:parameter qname="ns5:pacienteId" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="reservarHoraMedicaControl" qname="ns6:reservarHoraMedicaControl" returnQName="ns6:reservarHoraMedicaControlReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:horasMedicasIds" type="xsd:int"/>
+   <ns1:parameter qname="ns6:pacienteId" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="buscarHoraAPS reservarHoraMedicaControl reservarHoraAps"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="HoraApsSOAP"/>
+  <ns1:parameter name="className" value="cl.ufro.srhm.soap.HoraApsSOAP"/>
+  <ns1:parameter name="wsdlServicePort" value="HoraApsSOAP"/>
+  <ns1:parameter name="schemaQualified" value="http://soap.srhm.ufro.cl"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://soap.srhm.ufro.cl"/>
+  <ns1:parameter name="wsdlServiceElement" value="HoraApsSOAPService"/>
+ </ns1:service>
+ <ns1:service name="PacienteSOAP" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="obtenerPacientesMasReservas" qname="ns7:obtenerPacientesMasReservas" returnQName="ns7:obtenerPacientesMasReservasReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:fecha1" type="xsd:dateTime"/>
+   <ns1:parameter qname="ns7:fecha2" type="xsd:dateTime"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerPacientes" qname="ns8:obtenerPacientes" returnQName="ns8:obtenerPacientesReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="obtenerPacientesMasReservas obtenerPacientes"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="PacienteSOAP"/>
+  <ns1:parameter name="className" value="cl.ufro.srhm.soap.PacienteSOAP"/>
+  <ns1:parameter name="wsdlServicePort" value="PacienteSOAP"/>
+  <ns1:parameter name="schemaQualified" value="http://soap.srhm.ufro.cl"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://soap.srhm.ufro.cl"/>
+  <ns1:parameter name="wsdlServiceElement" value="PacienteSOAPService"/>
+ </ns1:service>
+ <ns1:service name="MedicosSOAP" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="obtenerMedico" qname="ns9:obtenerMedico" returnQName="ns9:obtenerMedicoReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:id" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerOcupacionMedico" qname="ns10:obtenerOcupacionMedico" returnQName="ns10:obtenerOcupacionMedicoReturn" returnType="xsd:int" soapAction="" xmlns:ns10="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:medicoId" type="xsd:int"/>
+   <ns1:parameter qname="ns10:fecha1" type="xsd:dateTime"/>
+   <ns1:parameter qname="ns10:fecha2" type="xsd:dateTime"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerMedicoMasSolicitado" qname="ns11:obtenerMedicoMasSolicitado" returnQName="ns11:obtenerMedicoMasSolicitadoReturn" returnType="xsd:string" soapAction="" xmlns:ns11="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:fecha1" type="xsd:dateTime"/>
+   <ns1:parameter qname="ns11:fecha2" type="xsd:dateTime"/>
+  </ns1:operation>
+  <ns1:operation name="buscarSuDisponibilidad" qname="ns12:buscarSuDisponibilidad" returnQName="ns12:buscarSuDisponibilidadReturn" returnType="xsd:string" soapAction="" xmlns:ns12="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:medicoId" type="xsd:int"/>
+   <ns1:parameter qname="ns12:fecha1" type="xsd:dateTime"/>
+   <ns1:parameter qname="ns12:fecha2" type="xsd:dateTime"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerMedicosDeEspecialidad" qname="ns13:obtenerMedicosDeEspecialidad" returnQName="ns13:obtenerMedicosDeEspecialidadReturn" returnType="xsd:string" soapAction="" xmlns:ns13="http://soap.srhm.ufro.cl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns13:especialidadId" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="obtenerOcupacionMedico obtenerMedico obtenerMedicosDeEspecialidad obtenerMedicoMasSolicitado buscarSuDisponibilidad"/>
+  <ns1:parameter name="wsdlPortType" value="MedicosSOAP"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://soap.srhm.ufro.cl"/>
+  <ns1:parameter name="wsdlServicePort" value="MedicosSOAP"/>
+  <ns1:parameter name="className" value="cl.ufro.srhm.soap.MedicosSOAP"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://soap.srhm.ufro.cl"/>
+  <ns1:parameter name="wsdlServiceElement" value="MedicosSOAPService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="srhm-soap:ear exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/srhm_soap_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="srhm-soap/javaeeApplication/javaEEApplication" />
+    </root>
+  </artifact>
+</component>
