@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<jsp:include page="_styles.jsp"/>
+<jsp:include page="_styles.jsp" />
 <link rel="stylesheet" href="css/reporte.css">
 <title>Médicos mas solicitados</title>
 
@@ -18,8 +18,12 @@
     <h2>Reporte de médicos más solicitados</h2>
     <div class="row">
       <div class="col-md-8">
+        <p class="text-muted">Los médicos mas solicitados
+          corresponden a los con mayor cantidad de reservas de horas
+          médicas en los periodos especificados</p>
         <div class="row margen">
-        <p class="text-primary">Puede indicar el rango de fechas a analizar. Si no se indica se analiza dentro de 24hrs</p>
+          <p class="text-primary">Puede indicar el rango de fechas a
+            analizar. Si no se indica se analiza dentro de 24hrs</p>
           <div class="col-md-6">
             <label for="datetimepicker1">Fecha inicio</label> <input
               id="datetimepicker1" type="text">
@@ -54,7 +58,7 @@
     </div>
 
   </section>
-  <jsp:include page="_footer.jsp"/>
+  <jsp:include page="_footer.jsp" />
 </body>
 <jsp:include page="_scripts.jsp"></jsp:include>
 <script src="js/reporte/rank_medicos.js">

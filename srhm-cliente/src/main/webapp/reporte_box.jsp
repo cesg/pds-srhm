@@ -15,8 +15,12 @@
   </jsp:include>
   <section class="container">
     <h2>Reporte de ocupación de box</h2>
+
     <div class="row">
       <div class="col-md-8">
+        <p class="text-muted">La ocupación de un box corresponde al
+          promedio de horas medicas reservadas entres las fechas que se
+          realizan en dicho box</p>
         <div id="seleccion" class="row">
           <label for="box_list">Lista de Box</label> <select
             id="box_list" class="form-control" style="width: 200px">

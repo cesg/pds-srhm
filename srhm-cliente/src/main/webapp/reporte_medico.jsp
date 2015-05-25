@@ -17,6 +17,9 @@
     <h2>Reporte de ocupación de médico</h2>
     <div class="row margen">
       <div class="col-md-8">
+        <p class="text-muted">La ocupación de un médico corresponde
+          al promedio de horas medicas reservadas entres las fechas que
+          se realiza el médico seleccionado</p>
         <div id="seleccion" class="row">
           <label for="especialidad_list">Lista especialidades</label> <select
             id="especialidad_list" class="form-control"
@@ -27,9 +30,8 @@
         </div>
 
         <div class="row margen">
-          <label>Médicos</label> <label for="medico_list">Lista
-            médicos de especialidad</label> <select id="medico_list"
-            class="form-control" style="width: 200px">
+          <label for="medico_list">Médicos de la especialidad</label> <select
+            id="medico_list" class="form-control" style="width: 200px">
           </select>
           <div class="row margen">
             <p class="text-primary">Puede indicar el rango de fechas

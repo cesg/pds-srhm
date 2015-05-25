@@ -18,6 +18,9 @@
     <h2>Reporte de pacientes con más reservas</h2>
     <div class="row">
       <div class="col-md-8">
+        <p class="text-muted">Corresponde a los pacientes que poseen
+          mas una mayor cantidad de reservas de horas médicas en los
+          periodos especificados</p>
         <div class="row margen">
           <p class="text-primary">Puede indicar el rango de fechas a
             analizar. Si no se indica se analiza dentro de 24hrs</p>
