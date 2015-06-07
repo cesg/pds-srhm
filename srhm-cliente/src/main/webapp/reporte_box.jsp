@@ -106,11 +106,11 @@
     </script>
   <script type="text/javascript">
       $('#datetimepicker1').datetimepicker({
-        format : 'Y-m-d H:i'
+        format : 'd-m-Y H:i'
       });
 
       $('#datetimepicker2').datetimepicker({
-        format : 'Y-m-d H:i'
+        format : 'd-m-Y H:i'
       });
     </script>
   <jsp:include page="_footer.jsp" />

@@ -47,7 +47,6 @@ public class PacienteSOAP {
 		List<PacienteReporteVO> estadistica = new LinkedList<PacienteReporteVO>();
 
 		try {
-			// List<Paciente> pacientes = PacienteDAO.queryPaciente(null, null);
 
 			PacienteCriteria pacienteCta = new PacienteCriteria();
 			pacienteCta
@@ -67,10 +66,6 @@ public class PacienteSOAP {
 			int reservasAFecha = rc.list().size();
 
 			for (Integer pacienteId : pacientesIds) {
-				// List<Reserva> reservas =
-				// ReservaDAO.queryReserva("paciente_id=" + paciente.getId(),
-				// null);
-				// System.out.println(pacienteId);
 
 				ReservaCriteria rcPaciente = new ReservaCriteria();
 				rcPaciente.pacienteId.eq(pacienteId);
