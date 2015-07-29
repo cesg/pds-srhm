@@ -10,62 +10,71 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cl.ufro.srhm.soap.HoraApsSOAPProxy;
+import cl.ufro.srhm.soap.HoraApsSOAPStub;
 
 /**
  * Servlet implementation class HoraMedicaList
  */
 public class HoraMedicaList extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public HoraMedicaList() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public HoraMedicaList() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-		response.setContentType("json");
-		
-		int medicoId = Integer.parseInt(request.getParameter("medicoId"));
-		
-		String fecha1 = request.getParameter("fecha1");
-		String fecha2 = request.getParameter("fecha2");
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		Calendar today = Calendar.getInstance();
-		Calendar todayNextYear = Calendar.getInstance();
-		try {
-			today.setTime(sdf.parse(fecha1));
-			todayNextYear.setTime(sdf.parse(fecha2));
-		} catch (ParseException e) {
-			todayNextYear.add(Calendar.DAY_OF_MONTH, 1);
-			System.err.println(e);
-		}
-		
-		HoraApsSOAPProxy horaApsSOAP = new HoraApsSOAPProxy();
-		String horasMedicas = horaApsSOAP.buscarHoraAPS(medicoId, today, todayNextYear);
-		response.getWriter().append(horasMedicas);
-	}
+        response.setContentType("json");
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+        int medicoId = Integer.parseInt(request.getParameter("medicoId"));
+
+        String fecha1 = request.getParameter("fecha1");
+        String fecha2 = request.getParameter("fecha2");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+        Calendar today = Calendar.getInstance();
+        Calendar todayNextYear = Calendar.getInstance();
+        try {
+            today.setTime(sdf.parse(fecha1));
+            todayNextYear.setTime(sdf.parse(fecha2));
+        } catch (ParseException e) {
+            todayNextYear.add(Calendar.DAY_OF_MONTH, 1);
+            System.err.println(e);
+        }
+
+        HoraApsSOAPStub proxy = new HoraApsSOAPStub();
+
+        HoraApsSOAPStub.BuscarHoraAPS buscarHoraAPS = new HoraApsSOAPStub.BuscarHoraAPS();
+        HoraApsSOAPStub.BuscarHoraAPSResponse horaAPSResponse = new HoraApsSOAPStub.BuscarHoraAPSResponse();
+        buscarHoraAPS.setMedicoId(medicoId);
+        buscarHoraAPS.setFecha1(today.getTime());
+        buscarHoraAPS.setFecha2(todayNextYear.getTime());
+
+        horaAPSResponse = proxy.buscarHoraAPS(buscarHoraAPS);
+
+        String horasMedicas = horaAPSResponse.get_return();
+        response.getWriter().append(horasMedicas);
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        doGet(request, response);
+    }
 
 }

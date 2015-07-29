@@ -6,6 +6,14 @@ eclipse.wtp.component {
 	resource deployPath: '/', sourcePath: 'src/main/webapp'
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
+
 eclipse.wtp.facet {
     facet name: 'jst.web', version: '2.5'
     facet name: 'java', version: '1.7'
@@ -18,7 +26,13 @@ repositories {
 
 dependencies {
 	// Eclipse AXIS
-	compile files('lib/axis.jar','lib/commons-discovery-0.2.jar', 'lib/commons-logging.jar', 'lib/jaxrpc.jar', 'lib/saaj.jar','lib/wsdl4j.jar')
+	// compile files('lib/axis.jar','lib/commons-discovery-0.2.jar', 'lib/commons-logging.jar', 'lib/jaxrpc.jar', 'lib/saaj.jar','lib/wsdl4j.jar')
+    
+    compile 'org.apache.axis2:axis2-adb:1.6.2'
+	compile 'org.apache.axis2:axis2-java2wsdl:1.6.2'
+	compile 'org.apache.axis2:axis2-transport-http:1.6.2'
+	compile 'org.apache.axis2:axis2-transport-local:1.6.2'
+	compile 'org.apache.axis2:axis2-jaxws:1.6.2'
     
     providedCompile "javax.servlet:servlet-api:2.5"
     

@@ -1,0 +1,1 @@
+// var app = angular.module('SrhmApp',['boxService','ui.bootstrap', 'angular-loading-bar']);

@@ -1,19 +1,19 @@
 package cl.ufro.srhm.cliente.servlet;
 
-import java.io.IOException;
+import cl.ufro.srhm.soap.PacienteSOAPStub;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import cl.ufro.srhm.soap.PacienteSOAPProxy;
+import java.io.IOException;
 
 /**
  * Servlet implementation class PacienteList
  */
 public class PacienteList extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -22,24 +22,24 @@ public class PacienteList extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("json");
-		
-		PacienteSOAPProxy pacienteSOAP = new PacienteSOAPProxy();
-		String pacientes = pacienteSOAP.obtenerPacientes();
-		
-		response.getWriter().append(pacientes);
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("json");
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+        PacienteSOAPStub soapStub = new PacienteSOAPStub();
+        PacienteSOAPStub.ObtenerPacientes pacientes = new PacienteSOAPStub.ObtenerPacientes();
+        String pacientesJson = soapStub.obtenerPacientes(pacientes).get_return();
+        response.getWriter().append(pacientesJson);
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        doGet(request, response);
+    }
 
 }

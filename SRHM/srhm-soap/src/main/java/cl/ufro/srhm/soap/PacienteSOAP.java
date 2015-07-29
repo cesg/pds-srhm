@@ -1,91 +1,90 @@
 package cl.ufro.srhm.soap;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-
+import cl.ufro.srhm.openmrs.OpenmrsHttpClient;
+import cl.ufro.srhm.openmrs.UnirestHttpClient;
+import cl.ufro.srhm.orm.*;
+import cl.ufro.srhm.soap.vo.PacienteReporteVO;
+import cl.ufro.srhm.soap.vo.PacienteVO;
+import com.google.gson.Gson;
 import org.hibernate.criterion.Projections;
 import org.orm.PersistentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-
-import cl.ufro.srhm.orm.HoraMedicaCriteria;
-import cl.ufro.srhm.orm.Paciente;
-import cl.ufro.srhm.orm.PacienteCriteria;
-import cl.ufro.srhm.orm.PacienteDAO;
-import cl.ufro.srhm.orm.ReservaCriteria;
-import cl.ufro.srhm.soap.vo.PacienteReporteVO;
-import cl.ufro.srhm.soap.vo.PacienteVO;
+import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class PacienteSOAP {
-	private static final Logger _logger = LoggerFactory.getLogger(PacienteSOAP.class);
+    private static final Logger _logger = LoggerFactory.getLogger(PacienteSOAP.class);
 
-	public String obtenerPacientes() {
-		String resultado = "[]";
-		try {
-			List<Paciente> pacientes = PacienteDAO.queryPaciente(null, null);
-			List<PacienteVO> pacientesVO = new LinkedList<>();
-			
-			for (Paciente paciente : pacientes) {
-				pacientesVO.add(PacienteVO.fromPaciente(paciente));
-			}
-			resultado = new Gson().toJson(pacientesVO);
-		} catch (PersistentException e) {
-			_logger.error("", e);
-		}
-		return resultado;
-	}
+    public String obtenerPacientes() {
+        String resultado = "[]";
+        try {
+            List<Paciente> pacientes = PacienteDAO.queryPaciente(null, null);
+            List<PacienteVO> pacientesVO = new LinkedList<>();
 
-	public String obtenerPacientesMasReservas(Date fecha1, Date fecha2) {
-		String resultado = "{}";
-		List<PacienteReporteVO> estadistica = new LinkedList<PacienteReporteVO>();
+            for (Paciente paciente : pacientes) {
+                pacientesVO.add(PacienteVO.fromPaciente(paciente));
+            }
+            resultado = new Gson().toJson(pacientesVO);
+        } catch (PersistentException e) {
+            _logger.error("", e);
+        }
+        return resultado;
+    }
 
-		try {
+    public String obtenerPacientesMasReservas(Date fecha1, Date fecha2) {
+        String resultado = "{}";
+        List<PacienteReporteVO> estadistica = new LinkedList<PacienteReporteVO>();
 
-			PacienteCriteria pacienteCta = new PacienteCriteria();
-			pacienteCta
-					.setProjection(Projections.projectionList().add(Projections.distinct(Projections.property("id"))));
-			ReservaCriteria reservaCta = pacienteCta.createReservaCriteria();
+        try {
 
-			HoraMedicaCriteria horaMedicaCta = reservaCta.createReservaHoraMedicaCriteria();
-			horaMedicaCta.fecha.between(new Timestamp(fecha1.getTime()), new Timestamp(fecha2.getTime()));
+            PacienteCriteria pacienteCta = new PacienteCriteria();
+            pacienteCta
+                    .setProjection(Projections.projectionList().add(Projections.distinct(Projections.property("id"))));
+            ReservaCriteria reservaCta = pacienteCta.createReservaCriteria();
 
-			List<Integer> pacientesIds = pacienteCta.list();
+            HoraMedicaCriteria horaMedicaCta = reservaCta.createReservaHoraMedicaCriteria();
+            horaMedicaCta.fecha.between(new Timestamp(fecha1.getTime()), new Timestamp(fecha2.getTime()));
 
-			ReservaCriteria rc = new ReservaCriteria();
+            List<Integer> pacientesIds = pacienteCta.list();
 
-			HoraMedicaCriteria hmc = rc.createReservaHoraMedicaCriteria();
-			hmc.fecha.between(new Timestamp(fecha1.getTime()), new Timestamp(fecha2.getTime()));
+            ReservaCriteria rc = new ReservaCriteria();
 
-			int reservasAFecha = rc.list().size();
+            HoraMedicaCriteria hmc = rc.createReservaHoraMedicaCriteria();
+            hmc.fecha.between(new Timestamp(fecha1.getTime()), new Timestamp(fecha2.getTime()));
 
-			for (Integer pacienteId : pacientesIds) {
+            int reservasAFecha = rc.list().size();
 
-				ReservaCriteria rcPaciente = new ReservaCriteria();
-				rcPaciente.pacienteId.eq(pacienteId);
+            for (Integer pacienteId : pacientesIds) {
 
-				HoraMedicaCriteria hmcP = rcPaciente.createReservaHoraMedicaCriteria();
-				hmcP.fecha.between(new Timestamp(fecha1.getTime()), new Timestamp(fecha2.getTime()));
+                ReservaCriteria rcPaciente = new ReservaCriteria();
+                rcPaciente.pacienteId.eq(pacienteId);
 
-				int reservasPaciente = rcPaciente.list().size();
+                HoraMedicaCriteria hmcP = rcPaciente.createReservaHoraMedicaCriteria();
+                hmcP.fecha.between(new Timestamp(fecha1.getTime()), new Timestamp(fecha2.getTime()));
 
-				Paciente paciente = PacienteDAO.getPacienteByORMID(pacienteId);
+                int reservasPaciente = rcPaciente.list().size();
 
-				estadistica.add(PacienteReporteVO.fromPaciente(paciente,
-						(reservasAFecha == 0) ? 0 : reservasPaciente * 100 / reservasAFecha));
-			}
-		} catch (PersistentException e) {
+                Paciente paciente = PacienteDAO.getPacienteByORMID(pacienteId);
 
-		}
-		Collections.sort(estadistica);
-		resultado = new Gson().toJson(estadistica);
+                estadistica.add(PacienteReporteVO.fromPaciente(paciente,
+                        (reservasAFecha == 0) ? 0 : reservasPaciente * 100 / reservasAFecha));
+            }
+        } catch (PersistentException e) {
 
-		return resultado;
-	}
+        }
+        Collections.sort(estadistica);
+        resultado = new Gson().toJson(estadistica);
+
+        return resultado;
+    }
+
+    public String bucarPaciente(String query) {
+        OpenmrsHttpClient openmrsHttpClient = new UnirestHttpClient();
+        return openmrsHttpClient.getPacientes(query);
+    }
 }

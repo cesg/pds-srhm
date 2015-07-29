@@ -1,1 +1,1 @@
-include "srhm-negocio","srhm-soap"
+include "srhm-negocio","srhm-soap","srhm-openmrs"

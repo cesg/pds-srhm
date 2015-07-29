@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cl.ufro.srhm.soap.BoxSOAPProxy;
+import cl.ufro.srhm.soap.BoxSOAPStub;
 
 /**
  * Servlet implementation class BoxOcupacion
@@ -33,7 +33,7 @@ public class BoxOcupacion extends HttpServlet {
 		String fecha1 = request.getParameter("fecha1");
 		String fecha2 = request.getParameter("fecha2");
 		
-		BoxSOAPProxy boxSOAP = new BoxSOAPProxy();
+		BoxSOAPStub boxProxy = new BoxSOAPStub();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		
@@ -46,7 +46,15 @@ public class BoxOcupacion extends HttpServlet {
 
 		}
 		
-		int ocupacion = boxSOAP.obtenerOcupacionBox(boxId, today, todayNextYear);
+		BoxSOAPStub.ObtenerOcupacionBox obtenerOcupacionBox = new BoxSOAPStub.ObtenerOcupacionBox();
+		BoxSOAPStub.ObtenerOcupacionBoxResponse boxResponse = new BoxSOAPStub.ObtenerOcupacionBoxResponse();
+		
+		obtenerOcupacionBox.setBoxId(boxId);
+		obtenerOcupacionBox.setFecha1(today.getTime());
+		obtenerOcupacionBox.setFecha2(todayNextYear.getTime());
+		boxResponse = boxProxy.obtenerOcupacionBox(obtenerOcupacionBox);
+		int ocupacion = boxResponse.get_return();
+		
 		response.getWriter().append("" + ocupacion);
 	}
 

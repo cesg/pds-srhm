@@ -1,8 +1,3 @@
 <div class="row">
-  <div id="msg" class="alert alert-info alert-dismissible collapse">
-    <button class="button" onclick="$('#msg').toggle();">
-      <span>X</span>
-    </button>
-    <span id="alert-msg"></span>
-  </div>
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()">{{alert.msg}}</alert>
 </div>

@@ -118,8 +118,50 @@
     <servlet-name>MedicoReservarControl</servlet-name>
     <servlet-class>cl.ufro.srhm.cliente.servlet.MedicoReservarControl</servlet-class>
   </servlet>
+  <servlet>
+  	<display-name>Apache-Axis Servlet</display-name>
+  	<servlet-name>AxisServlet</servlet-name>
+  	<servlet-class>org.apache.axis2.transport.http.AxisServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<display-name>Apache-Axis Admin Servlet Web Admin</display-name>
+  	<servlet-name>AxisAdminServlet</servlet-name>
+  	<servlet-class>org.apache.axis2.transport.http.AxisAdminServlet</servlet-class>
+  	<load-on-startup>100</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>BuscarPacienteServlet</servlet-name>
+    <servlet-class>cl.ufro.srhm.cliente.servlet.BuscarPacienteServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>PacienteBuscar</display-name>
+  	<servlet-name>PacienteBuscar</servlet-name>
+  	<servlet-class>cl.ufro.srhm.cliente.servlet.PacienteBuscar</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>MedicoReservarControl</servlet-name>
     <url-pattern>/MedicoReservarControl</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AxisServlet</servlet-name>
+  	<url-pattern>/servlet/AxisServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AxisServlet</servlet-name>
+  	<url-pattern>*.jws</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AxisServlet</servlet-name>
+  	<url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AxisAdminServlet</servlet-name>
+  	<url-pattern>/axis2-admin/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>PacienteBuscar</servlet-name>
+  	<url-pattern>/PacienteBuscar</url-pattern>
   </servlet-mapping>
 </web-app>
