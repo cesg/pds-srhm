@@ -14,6 +14,7 @@ public class HttpClientTest {
 		System.out.println(httpClient.getPerson("Super"));
 	}
 
+	@Ignore
 	@Test
 	public void testEncounter() {
 		UnirestHttpClient httpClient = new UnirestHttpClient();

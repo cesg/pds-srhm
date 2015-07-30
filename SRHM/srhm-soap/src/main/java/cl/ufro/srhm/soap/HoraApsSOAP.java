@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
+import cl.ufro.srhm.openmrs.OpenmrsHttpClient;
+import cl.ufro.srhm.openmrs.UnirestHttpClient;
 import cl.ufro.srhm.orm.HoraMedica;
 import cl.ufro.srhm.orm.HoraMedicaCriteria;
 import cl.ufro.srhm.orm.HoraMedicaDAO;
@@ -117,5 +119,10 @@ public class HoraApsSOAP {
 		}
 
 		return resultado;
+	}
+	
+	public String buscarHorasMedicasPaciente(String id) {
+		OpenmrsHttpClient openmrsHttpClient = new UnirestHttpClient();
+		return openmrsHttpClient.getEncounters(id);
 	}
 }

@@ -140,6 +140,13 @@
   	<servlet-name>PacienteBuscar</servlet-name>
   	<servlet-class>cl.ufro.srhm.cliente.servlet.PacienteBuscar</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>HoraMedicaPaciente</display-name>
+  	<servlet-name>HoraMedicaPaciente</servlet-name>
+  	<servlet-class>cl.ufro.srhm.cliente.servlet.HoraMedicaPaciente</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>MedicoReservarControl</servlet-name>
     <url-pattern>/MedicoReservarControl</url-pattern>
@@ -163,5 +170,9 @@
   <servlet-mapping>
   	<servlet-name>PacienteBuscar</servlet-name>
   	<url-pattern>/PacienteBuscar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>HoraMedicaPaciente</servlet-name>
+  	<url-pattern>/HoraMedicaPaciente</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -18,11 +18,11 @@ dependencies {
 	
 	providedCompile "javax.servlet:servlet-api:2.5"
 	
-	runtime 'org.apache.axis2:axis2-adb:1.6.2'
-	runtime 'org.apache.axis2:axis2-java2wsdl:1.6.2'
-	runtime 'org.apache.axis2:axis2-transport-http:1.6.2'
-	runtime 'org.apache.axis2:axis2-transport-local:1.6.2'
-	runtime 'org.apache.axis2:axis2-jaxws:1.6.2'
+	runtime 'org.apache.axis2:axis2-adb:1.6.3'
+	runtime 'org.apache.axis2:axis2-java2wsdl:1.6.3'
+	runtime 'org.apache.axis2:axis2-transport-http:1.6.3'
+	runtime 'org.apache.axis2:axis2-transport-local:1.6.3'
+	runtime 'org.apache.axis2:axis2-jaxws:1.6.3'
 	
 	compile 'com.google.code.gson:gson:2.3.1'
 }

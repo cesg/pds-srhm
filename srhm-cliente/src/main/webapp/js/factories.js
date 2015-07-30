@@ -1,4 +1,6 @@
-angular.module('boxService', []).factory('Box', function ($http) {
+//var app = angular.module('SrhmApp', ['angular-loading-bar', 'ui.bootstrap', 'alertService']);
+
+app.factory('BoxService', function ($http) {
     return {
         all: function () {
             return $http.get('BoxList');

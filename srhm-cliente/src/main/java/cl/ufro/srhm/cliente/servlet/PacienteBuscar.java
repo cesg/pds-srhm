@@ -13,30 +13,40 @@ import cl.ufro.srhm.soap.PacienteSOAPStub;
  */
 public class PacienteBuscar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PacienteBuscar() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		PacienteSOAPStub soapStub = new PacienteSOAPStub();
-		
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	public PacienteBuscar() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String texto = request.getParameter("q");
+
+		PacienteSOAPStub soapStub = new PacienteSOAPStub();
+		PacienteSOAPStub.BucarPaciente buscarPaciente = new PacienteSOAPStub.BucarPaciente();
+
+        buscarPaciente.setQuery(texto);
+
+		String resultado = soapStub.bucarPaciente(buscarPaciente).get_return();
+
+		response.getWriter().print(resultado);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -1,1 +1,1 @@
-// var app = angular.module('SrhmApp',['boxService','ui.bootstrap', 'angular-loading-bar']);
+var app = angular.module('SrhmApp', ['angular-loading-bar', 'ui.bootstrap', 'alertService']);

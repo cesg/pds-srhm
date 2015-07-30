@@ -1,7 +1,6 @@
-var app = angular.module('SrhmApp', ['boxService', 'angular-loading-bar', 'ui.bootstrap', 'alertService']);
+//var app = angular.module('SrhmApp', ['BoxService', 'angular-loading-bar', 'ui.bootstrap', 'alertService']);
 
-
-app.controller('ReporteController', ['$scope', '$filter', 'Box', 'alertService', function ($scope, $filter, Box, alertService) {
+app.controller('ReporteController', ['$scope', '$filter', 'BoxService', 'alertService', function ($scope, $filter, Box, alertService) {
     $scope.box = {};
     $scope.boxes = [];
     $scope.alerts = alertService.get();

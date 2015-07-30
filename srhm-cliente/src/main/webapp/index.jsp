@@ -18,6 +18,7 @@
         href="home_medico.jsp">Acceder como médico</a></li>
       <li><a class="btn btn-primary btn-lg btn-block"
         href="home_paciente.jsp">Acceder como paciente</a></li>
+      <li><a href="home_rce.jsp">Ver RCE</a></li>
     </ul>
 
 

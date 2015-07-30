@@ -97,34 +97,11 @@
 
 </section>
 <jsp:include page="_scripts.jsp"></jsp:include>
+
 <script src="js/reporteController.js"></script>
 <script src="js/alertService.js"></script>
 <script type="text/javascript">
 
-    // Obtiene la ocupacion del box
-    //    $("#ver_ocupacion").click(
-    //            function (e) {
-    //                // obtiene el ID del box selecionado
-    //                var boxId = $("#box_list").val();
-    //                var fecha1 = $('#datetimepicker1').val();
-    //                var fecha2 = $('#datetimepicker2').val();
-    //                // Consulta la servlet por la ocupacion con el ID
-    //                $.get("BoxOcupacion?boxId=" + boxId + '&fecha1=' + fecha1
-    //                        + '&fecha2=' + fecha2, function (data) {
-    //                    if (data == 0) {
-    //                        showMensaje("El Box no posee reservas en la fecha indicada");
-    //                    } else if (data < 31) {
-    //                        $('.progress-bar').addClass('progress-bar-info');
-    //                    } else if (data > 31 && data < 51) {
-    //                        $('.progress-bar').addClass('progress-bar-success');
-    //                    } else if (data > 51) {
-    //                        $('.progress-bar').addClass('progress-bar-danger');
-    //                    }
-    //                    $('.progress-bar').html(data + "%");
-    //                    $('.progress-bar').css('width', data + '%').attr('aria-valuenow',
-    //                            data);
-    //                });
-    //            });
 </script>
 <script type="text/javascript">
     $('#datetimepicker1').datetimepicker({
